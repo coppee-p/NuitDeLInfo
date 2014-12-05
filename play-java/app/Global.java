@@ -3,6 +3,7 @@ import java.util.Date;
 
 import models.Camp;
 import models.Event;
+import models.Staff;
 
 import com.avaje.ebean.Ebean;
 
@@ -39,7 +40,7 @@ public class Global extends GlobalSettings {
 							.UTC(2014, 12, 15, 0, 0, 0))).save();
 			new Event(
 					"Se proteger des MST",
-					Event.EventType.ALERT,
+					Event.EventType.PREVENTION,
 					-1.63333,
 					13.583333,
 					"Seul moyen de protection contre les infections sexuellement transmissibles, le préservatif se décline aussi au féminin. Découvrez tous les atouts de cet accessoire indispensable du safe sex.",
@@ -52,6 +53,8 @@ public class Global extends GlobalSettings {
 					13.0297,
 					"On se felecite de la baisse du nombre d'infecte par l'ebola dans le sud du Gabon.",
 					new Date(Date.UTC(2014, 12, 5, 0, 0, 0))).save();
+			new Staff("admin", "admin", null, Staff.StaffRole.ADMINISTRATOR)
+					.save();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
