@@ -21,7 +21,7 @@ public class PublicController extends Controller {
 		List<Event> news = Event.find.where()
 				.eq("type", Event.EventType.PREVENTION).findList();
 
-		return TODO;
+		return ok(prevention.render(news));
 	}
 
 	public static Result readNews() {

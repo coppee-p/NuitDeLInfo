@@ -1,5 +1,13 @@
 @import forms.LoginForm
 @(loginForm: Form[LoginForm])
+@import helper.twitterBootstrap._
+
 
 @layout1{
+@helper.form(action = routes.PublicController.authenticate()) {    
+    @helper.inputText(loginForm("login"))
+    @helper.inputPassword(loginForm("password"))
+	<input type="submit" />
+}
+
 }
