@@ -1,7 +1,18 @@
-@(message: String)
+@(alerts: List[models.Event])(news: List[models.Event])
 
-@main("Welcome to Play") {
-
-    @play20.welcome(message, style = "Java")
-
+@layout1 {
+<section role="main">
+		@for(alert <- alerts){
+		<div class="panel panel-primary">
+			<div class="panel-heading">@alert.getTitle</div>
+			<div class="panel-body">@alert.getDescription</div>
+		</div>
+		}
+		@for(n <- news){
+		<div class="panel panel-warning">
+			<div class="panel-heading">@n.getTitle</div>
+			<div class="panel-body">@n.getDescription</div>
+		</div>
+		}
+	</section>
 }

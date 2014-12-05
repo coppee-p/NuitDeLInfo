@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import javax.annotation.Nullable;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -17,6 +18,7 @@ import play.data.validation.Constraints.Email;
 import play.data.validation.Constraints.MinLength;
 import play.db.ebean.Model;
 
+@Entity
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 abstract public class User extends Model {

@@ -3,6 +3,7 @@ package models;
 import java.util.Iterator;
 import java.util.Set;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +16,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import play.db.ebean.Model;
 
+@Entity
 public class Camp extends Model {
 
 	private static final long serialVersionUID = 1L;
@@ -60,6 +62,17 @@ public class Camp extends Model {
 		this.size = size;
 	}
 
+	public Camp(String name, Double latitude, Double longitude, String country,
+			String region, CampStatus state, Integer size) {
+		this.name = name;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.country = country;
+		this.region = region;
+		this.state = state;
+		this.size = size;
+	}
+
 	public boolean isNear(Double latitude, Double longitude) {
 		// TODO
 		return false;
@@ -73,8 +86,8 @@ public class Camp extends Model {
 		return size - users.size();
 	}
 
-	static enum CampStatus {
-		CLOSED, OPENED
+	public static enum CampStatus {
+		CLOSE, OPEN
 	}
 
 	public Integer getId() {

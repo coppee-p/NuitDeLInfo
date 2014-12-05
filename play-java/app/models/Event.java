@@ -3,6 +3,8 @@ package models;
 import java.util.Date;
 
 import javax.annotation.Nullable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,9 +13,13 @@ import javax.persistence.ManyToOne;
 
 import play.db.ebean.Model;
 
+@Entity
 public class Event extends Model {
 
 	private static final long serialVersionUID = 1L;
+
+	public static Finder<Integer, Event> find = new Finder<Integer, Event>(
+			Integer.class, Event.class);
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,6 +32,7 @@ public class Event extends Model {
 	protected Double latitude;
 	protected Double longitude;
 
+	@Column(columnDefinition = "TEXT")
 	protected String description;
 
 	protected Date beginning;
@@ -38,6 +45,27 @@ public class Event extends Model {
 	public Event(Integer id, String title, EventType type, Double latitude,
 			Double longitude, String description, Date beginning, Date end) {
 		this.id = id;
+		this.title = title;
+		this.type = type;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.description = description;
+		this.beginning = beginning;
+		this.end = end;
+	}
+
+	public Event(String title, EventType type, Double latitude,
+			Double longitude, String description, Date beginning) {
+		this.title = title;
+		this.type = type;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.description = description;
+		this.beginning = beginning;
+	}
+
+	public Event(String title, EventType type, Double latitude,
+			Double longitude, String description, Date beginning, Date end) {
 		this.title = title;
 		this.type = type;
 		this.latitude = latitude;
@@ -119,7 +147,7 @@ public class Event extends Model {
 		this.end = end;
 	}
 
-	static enum EventType {
+	public static enum EventType {
 		ALERT, NEWS, PREVENTION
 	}
 

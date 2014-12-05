@@ -1,9 +1,10 @@
 package models;
 
 import java.util.Set;
-
+import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+@Entity
 public class Staff extends User {
 
 	private static final long serialVersionUID = 1L;

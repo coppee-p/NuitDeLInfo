@@ -1,5 +1,8 @@
 package controllers;
 
+import java.util.List;
+
+import models.Event;
 import models.User;
 import forms.LoginForm;
 import play.*;
@@ -10,20 +13,23 @@ import play.data.*;
 
 public class PublicController extends Controller {
 
-	public static Result index() {
-		return ok(index.render("Your new application is ready."));
-	}
-
 	public static Result seeCamps() {
 		return TODO;
 	}
 
 	public static Result readPreventions() {
+		List<Event> news = Event.find.where()
+				.eq("type", Event.EventType.PREVENTION).findList();
+
 		return TODO;
 	}
 
 	public static Result readNews() {
-		return TODO;
+		List<Event> news = Event.find.where().eq("type", Event.EventType.NEWS)
+				.findList();
+		List<Event> alerts = Event.find.where()
+				.eq("type", Event.EventType.ALERT).findList();
+		return ok(index.render(alerts, news));
 	}
 
 	public static Result loginPage() {
@@ -44,7 +50,7 @@ public class PublicController extends Controller {
 				session("login", loginForm.get().login);
 				String uri = session().get("previousPage");
 				if (uri == null)
-					return redirect(routes.PublicController.index());
+					return redirect(routes.PublicController.readNews());
 				else
 					return redirect(uri);
 			}
