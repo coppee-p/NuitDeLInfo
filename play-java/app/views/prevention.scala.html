@@ -1,0 +1,12 @@
+@(preventions: List[models.Event])
+
+@layout1 {
+<section role="main">
+		@for(n <- preventions){
+		<div class="panel panel-success">
+			<div class="panel-heading">@n.getTitle</div>
+			<div class="panel-body">@n.getDescription</div>
+		</div>
+		}
+	</section>
+}
